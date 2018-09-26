@@ -131,7 +131,7 @@ Matrix3x3.RowMajorOrder = function(list) {
   var xx = list[0]; var xy = list[1]; var xz = list[2];
   var yx = list[3]; var yy = list[4]; var yz = list[5];
   var zx = list[6]; var zy = list[7]; var zz = list[8];
-  var result = Matrix3x3();
+  var result = Matrix();
   result[0] = xx; result[4] = xy; result[8] = xz;
   result[1] = yx; result[5] = yy; result[9] = yz;
   result[2] = zx; result[6] = zy; result[10]= zz;
@@ -180,7 +180,7 @@ Matrix3x3.FromRotationVector = function(ωx, ωy, ωz) {
   ]);
 }
 Matrix3x3.invert = function(matrix, result) {
-    result = result || Matrix3x3();
+    result = result || Matrix();
     if ((matrix.length !== 9) || !(matrix instanceof Float32Array)) { throw "matrix" + ' is not a 3x3 matrix'; }
     if ((result.length !== 9) || !(result instanceof Float32Array)) { throw "result" + ' is not a 3x3 matrix'; }
     var A = matrix;
@@ -207,7 +207,7 @@ Matrix3x3.invert = function(matrix, result) {
     return B;
 }
 Matrix3x3.add_scalar = function(matrix, scalar, result) {
-  var result = result || Matrix3x3();
+  var result = result || Matrix();
   var A = matrix;
   var b = scalar;
   var C = result;
@@ -226,7 +226,7 @@ Matrix3x3.add_scalar = function(matrix, scalar, result) {
   return C;
 }
 Matrix3x3.sub_scalar = function(matrix, scalar, result) {
-  var result = result || Matrix3x3();
+  var result = result || Matrix();
   var A = matrix;
   var b = scalar;
   var C = result;
@@ -245,7 +245,7 @@ Matrix3x3.sub_scalar = function(matrix, scalar, result) {
   return C;
 }
 Matrix3x3.mult_scalar = function(matrix, scalar, result) {
-  var result = result || Matrix3x3();
+  var result = result || Matrix();
   var A = matrix;
   var b = scalar;
   var C = result;
@@ -264,7 +264,7 @@ Matrix3x3.mult_scalar = function(matrix, scalar, result) {
   return C;
 }
 Matrix3x3.mult_matrix = function(A, B, result) {
-  var result = result || Matrix3x3();
+  var result = result || Matrix();
   var C = result;
   if ((A.length !== 9) || !(A instanceof Float32Array)) { throw "A" + ' is not a 3x3 matrix'; }
   if ((B.length !== 9) || !(B instanceof Float32Array)) { throw "B" + ' is not a 3x3 matrix'; }
@@ -287,7 +287,7 @@ Matrix3x3.mult_matrix = function(A, B, result) {
   return C;
 }
 Matrix3x3.hadamard_matrix = function(A, B, result) {
-  var result = result || Matrix3x3();
+  var result = result || Matrix();
   var C = result;
   if ((A.length !== 9) || !(A instanceof Float32Array)) { throw "A" + ' is not a 3x3 matrix'; }
   if ((B.length !== 9) || !(B instanceof Float32Array)) { throw "B" + ' is not a 3x3 matrix'; }
