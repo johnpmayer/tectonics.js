@@ -5,6 +5,8 @@ else
     CPP=/usr/bin/cpp
 endif
 
+SRC=core/src/Rasters.cpp
+INC:=$(shell find core/inc/ -name "*.hpp") 
 OUT=postcompiled/utils/Rasters.cpp.js postcompiled/utils/Rasters.js postcompiled/view/FragmentShaders.js postcompiled/view/VertexShaders.js
 
 all: $(OUT)
@@ -12,7 +14,7 @@ all: $(OUT)
 run:
 	emrun --browser chrome postcompiled/utils/Rasters.cpp.html
 
-postcompiled/utils/Rasters.cpp.js:
+postcompiled/utils/Rasters.cpp.js : $(INC) $(SRC)
 	em++ --emrun --bind --profiling-funcs -std=c++17 \
 	-I core/inc/ \
 	-g core/src/Rasters.cpp \
