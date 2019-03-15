@@ -192,6 +192,22 @@ function simulate() {
 	universe.initialize();
 	
 	console.log("Model ready:", universe);
+	
+	var constantTimestep = speed * 0.1;
+	var steps = 50;
+	var logPeriod = 10;
+	
+	for (var i = 1; i <= steps; i += 1) {
+		if (i % logPeriod == 0) {
+			console.log("Step", i)
+		}
+		
+		universe.invalidate();
+		universe.calcChanges(constantTimestep);
+		universe.applyChanges(constantTimestep);
+	}
+	
+	console.log("Model finished");
 
 }
 
